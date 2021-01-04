@@ -1,0 +1,15 @@
+<h2><%= @movie.title %></h2>
+<p>
+  <%= @movie.creation_year %>
+  <%= @movie.genre %>
+  Actors:<br>
+  <% @movie.order_actors_by_age.each do |actor| %>
+  <%= actor.name %><br>
+  <% end %>
+  Average Age of all Actors: <%= @movie.average_age_of_actors %>
+</p>
+<%= form_tag("/movies/#{@movie.id}", method: :get) do %>
+    <%= label_tag :add_actor_to_this_movie %>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search" %>
+  <% end %>
